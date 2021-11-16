@@ -45,6 +45,7 @@ router.post('/create', async (req, res) => {
     })
     return
   }
+  
 
   const user = {
     name,
@@ -83,7 +84,7 @@ router.post('/login', async (req, res) => {
   
   try {
     const user = await User.findOne({email})
-    
+
     if (password === user.password) {
       res.status(201).json({
         success: true,

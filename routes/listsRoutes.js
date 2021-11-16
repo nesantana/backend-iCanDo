@@ -46,10 +46,8 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const _id = req.params.id
 
-  const uniqueUser = await User.findOne({ _id })
-
   try {
-    const lists = await Lists.find({user: uniqueUser.email})
+    const lists = await Lists.find({user: _id})
 
     res.status(200).json({
       success: true,
@@ -64,7 +62,7 @@ router.get('/byid/:id', async (req, res) => {
   const _id = req.params.id
 
   try {
-    const lists = await Lists.find({_id})
+    const lists = await Lists.find({user: _id})
 
     res.status(200).json({
       success: true,
